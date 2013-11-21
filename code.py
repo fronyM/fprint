@@ -1,4 +1,7 @@
+#!/bin/sh
+
 import web
+import subprocess
 
 db = web.database(host='192.168.18.128', dbn='mysql', user='root', pw='123456', db='fprint')
 
@@ -18,11 +21,13 @@ class index:
 
 class enroll:
     def POST(self):
-	return render.enroll(self)	
+	info = subprocess.check_output("./enroll")
+	return render.enroll(info)	
 
 class verify:
     def POST(self):
-        return render.verify(self)
+	info = subprocess.check_output("./verify")
+        return render.verify(info)
 
 class back:
     def POST(self):

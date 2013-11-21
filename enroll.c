@@ -43,7 +43,7 @@ struct fp_print_data *enroll(struct fp_dev *dev) {
 	} while (r != FP_ENROLL_COMPLETE);
 
 	if (!enrolled_print) {
-		fprintf(stderr, "Enroll complete but no print?\n");
+		printf("Enroll complete but no print?\n");
 		return NULL;
 	}
 
@@ -61,27 +61,27 @@ int main(void)
 
 	r = fp_init();
 	if (r < 0) {
-		fprintf(stderr, "Failed to initialize libfprint\n");
+		printf("Failed to initialize libfprint\n");
 		exit(1);
 	}
 	fp_set_debug(3);
 
 	discovered_devs = fp_discover_devs();
 	if (!discovered_devs) {
-		fprintf(stderr, "Could not discover devices\n");
+		printf("Could not discover devices\n");
 		goto out;
 	}
 
 	ddev = discover_device(discovered_devs);
 	if (!ddev) {
-		fprintf(stderr, "No devices detected.\n");
+		printf("No devices detected.\n");
 		goto out;
 	}
 
 	dev = fp_dev_open(ddev);
 	fp_dscv_devs_free(discovered_devs);
 	if (!dev) {
-		fprintf(stderr, "Could not open device.\n");
+		printf("Could not open device.\n");
 		goto out;
 	}
 
@@ -92,7 +92,7 @@ int main(void)
 
 	r = fp_print_data_save(data, RIGHT_INDEX);
 	if (r < 0)
-		fprintf(stderr, "Data save failed, code %d\n", r);
+		printf("Data save failed, code %d\n");
 
 	fp_print_data_free(data);
 out_close:

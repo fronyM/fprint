@@ -48,27 +48,27 @@ int main(void)
 
 	r = fp_init();
 	if (r < 0) {
-		fprintf(stderr, "Failed to initialize fprint\n");
+		printf("Failed to initialize fprint\n");
 		exit(1);
 	}
 	fp_set_debug(3);
 
 	discovered_devs = fp_discover_devs();
 	if (!discovered_devs) {
-		fprintf(stderr, "Could not discover devices\n");
+		printf("Could not discover devices\n");
 		goto out;
 	}
 
 	ddev = discover_device(discovered_devs);
 	if (!ddev) {
-		fprintf(stderr, "No devices detected.\n");
+		printf("No devices detected.\n");
 		goto out;
 	}
 
 	dev = fp_dev_open(ddev);
 	fp_dscv_devs_free(discovered_devs);
 	if (!dev) {
-		fprintf(stderr, "Could not open device.\n");
+		printf("Could not open device.\n");
 		goto out;
 	}
 
@@ -77,7 +77,7 @@ int main(void)
 
 	r = fp_print_data_load(dev, RIGHT_INDEX, &data);
 	if (r != 0) {
-		fprintf(stderr, "Failed to load fingerprint,\n");
+		printf("Failed to load fingerprint,\n");
 		goto out_close;
 	}
 
