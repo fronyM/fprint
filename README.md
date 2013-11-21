@@ -1,8 +1,7 @@
-fprint
+Fprint
 ======
 
 Finger print authentication project. 
-
 
 
 License
