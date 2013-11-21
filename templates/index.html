@@ -1,0 +1,14 @@
+$def with (i)
+
+<ul>
+$for fprint_user in i:
+    <li id = "$fprint_user.id">$fprint_user.finger</li>
+
+</ui>
+<form method="post" action="enroll">
+<p><input type="submit" value="Enroll" /></p>
+</form>
+<form method="post" action="verify">
+<p><input type="submit" value="Verify" /></p>
+</form>
+
